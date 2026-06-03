@@ -26,15 +26,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --card: #1a1a25;
-    --border: rgba(255,255,255,0.08);
-    --accent: #a78bfa;
-    --accent2: #f472b6;
-    --accent3: #34d399;
-    --text: #f0f0f8;
-    --muted: #8888a8;
+    --bg: #0a0a08;
+    --surface: #111110;
+    --card: #1a1a16;
+    --border: rgba(212,175,55,0.15);
+    --accent: #d4af37;
+    --accent2: #f0c040;
+    --accent3: #b8960c;
+    --text: #f5f0e8;
+    --muted: #8a8070;
     --radius: 16px;
   }
 
@@ -52,8 +52,8 @@
   .stars {
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(167,139,250,0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(244,114,182,0.05) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 50%, rgba(212,175,55,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(240,192,64,0.05) 0%, transparent 50%);
   }
   .stars::before {
     content: '';
@@ -98,9 +98,10 @@
     font-size: clamp(28px, 8vw, 44px);
     font-weight: 700;
     line-height: 1.2;
-    background: linear-gradient(135deg, var(--text) 30%, var(--accent) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #d4af37;
+    text-shadow:
+      0 0 20px rgba(212,175,55,0.4),
+      0 0 40px rgba(212,175,55,0.15);
     margin-bottom: 16px;
   }
   .top-sub {
@@ -134,7 +135,7 @@
 
   .btn-start {
     width: 100%; padding: 18px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    background: linear-gradient(135deg, #b8960c, #d4af37, #f0c040);
     border: none; border-radius: var(--radius);
     color: white; font-size: 16px; font-weight: 700;
     font-family: 'Noto Sans JP', sans-serif;
@@ -165,7 +166,7 @@
   }
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    background: linear-gradient(90deg, #b8960c, #f0c040);
     border-radius: 99px;
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -204,12 +205,12 @@
     line-height: 1.5;
   }
   .option-btn:hover {
-    background: rgba(167,139,250,0.1);
-    border-color: rgba(167,139,250,0.4);
+    background: rgba(212,175,55,0.1);
+    border-color: rgba(212,175,55,0.4);
     transform: translateX(4px);
   }
   .option-btn.selected {
-    background: rgba(167,139,250,0.15);
+    background: rgba(212,175,55,0.15);
     border-color: var(--accent);
     color: white;
   }
@@ -238,7 +239,7 @@
     font-size: clamp(36px, 12vw, 56px);
     font-weight: 700;
     letter-spacing: 4px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    background: linear-gradient(135deg, #b8960c, #d4af37, #f0c040);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 8px;
@@ -269,29 +270,33 @@
     font-size: 15px; line-height: 1.8; color: #d0d0e8;
   }
 
-  /* ===== 軸スコア ===== */
-  .axis-grid {
-    display: flex; flex-direction: column; gap: 14px;
+  /* ===== ハチミツ度 ===== */
+  .hachimitsu-wrap {
+    text-align: center; padding: 8px 0 4px;
   }
-  .axis-row { }
-  .axis-labels {
-    display: flex; justify-content: space-between;
-    font-size: 11px; margin-bottom: 6px;
+  .hachimitsu-pct {
+    font-size: clamp(48px, 14vw, 72px);
+    font-weight: 700; font-family: monospace;
+    background: linear-gradient(135deg, #d4af37, #f0c040);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1;
   }
-  .axis-left { color: var(--accent); font-weight: 500; }
-  .axis-right { color: var(--muted); }
-  .axis-bar {
-    height: 6px; background: rgba(255,255,255,0.06);
-    border-radius: 99px; overflow: hidden; position: relative;
+  .hachimitsu-label {
+    font-size: 13px; color: var(--muted); margin-top: 6px; letter-spacing: 1px;
   }
-  .axis-fill {
+  .hachimitsu-bar-wrap {
+    margin-top: 14px;
+    height: 8px; background: rgba(255,255,255,0.06);
+    border-radius: 99px; overflow: hidden;
+  }
+  .hachimitsu-bar-fill {
     height: 100%; border-radius: 99px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(90deg, #b8960c, #f0c040);
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .axis-pct {
-    font-size: 11px; color: var(--muted);
-    text-align: right; margin-top: 3px;
+  .hachimitsu-msg {
+    font-size: 13px; color: var(--muted);
+    margin-top: 10px; line-height: 1.6;
   }
 
   /* ===== 強み・弱み ===== */
@@ -304,7 +309,7 @@
     padding: 10px 12px;
     font-size: 13px; line-height: 1.4;
   }
-  .trait-item.strength { border-color: rgba(52,211,153,0.25); color: #a7f3d0; }
+  .trait-item.strength { border-color: rgba(212,175,55,0.3); color: #f0d080; }
   .trait-item.weakness { border-color: rgba(251,113,133,0.25); color: #fda4af; }
   .trait-icon { font-size: 16px; margin-bottom: 4px; display: block; }
 
@@ -404,7 +409,7 @@
   }
   .btn-download {
     width: 100%; padding: 16px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    background: linear-gradient(135deg, #b8960c, #d4af37, #f0c040);
     border: none; border-radius: var(--radius);
     color: white; font-size: 15px; font-weight: 700;
     font-family: 'Noto Sans JP', sans-serif;
@@ -461,6 +466,43 @@
   }
   .modal-btn-secondary:hover { border-color: var(--accent); color: var(--text); }
 
+  /* ===== 免責事項 ===== */
+  .disclaimer-btn {
+    position: fixed; bottom: 16px; right: 16px;
+    font-size: 11px; color: rgba(255,255,255,0.3);
+    background: none; border: none; cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    z-index: 50; text-decoration: underline;
+    transition: color 0.2s;
+  }
+  .disclaimer-btn:hover { color: rgba(255,255,255,0.6); }
+  .disclaimer-modal {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.8);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .disclaimer-modal.active { opacity: 1; pointer-events: all; }
+  .disclaimer-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 24px;
+    max-width: 560px; width: 100%; max-height: 80vh; overflow-y: auto;
+    transform: translateY(20px); transition: transform 0.3s;
+  }
+  .disclaimer-modal.active .disclaimer-box { transform: translateY(0); }
+  .disclaimer-box h2 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--accent); }
+  .disclaimer-box p { font-size: 13px; color: #b0b0c8; line-height: 1.8; margin-bottom: 12px; }
+  .disclaimer-close {
+    display: block; width: 100%; margin-top: 20px; padding: 12px;
+    background: transparent; border: 1px solid var(--border);
+    border-radius: 10px; color: var(--muted); font-size: 13px;
+    font-family: 'Noto Sans JP', sans-serif; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .disclaimer-close:hover { border-color: var(--accent); color: var(--text); }
+
   /* ===== レスポンシブ ===== */
   @media (max-width: 400px) {
     .traits-grid { grid-template-columns: 1fr; }
@@ -485,6 +527,7 @@
     <div class="start-card animate-in" style="animation-delay:0.1s">
       <h2>診断について</h2>
       <ul>
+        <li>質問に対する回答に応じて、あなたの性格タイプとハチミツ一致度が表示されます。</li>
         <li>全 15 問・4択、所要時間は約 3〜4 分</li>
         <li>直感で選ぶと、より正確な結果が出ます。</li>
         <li>選んだ選択肢がハチミツ本人が選んだ選択肢と全て一致すると、幻の17種類目のタイプに！？</li>
@@ -546,8 +589,15 @@
     </div>
 
     <div class="result-card animate-in" style="animation-delay:0.15s">
-      <h3>✦ 4つの軸スコア</h3>
-      <div class="axis-grid" id="r-axes"></div>
+      <h3>✦ あなたのハチミツ度</h3>
+      <div class="hachimitsu-wrap">
+        <div class="hachimitsu-pct" id="r-hachimitsu-pct">0%</div>
+        <div class="hachimitsu-label">ハチミツ本人との選択肢一致率</div>
+        <div class="hachimitsu-bar-wrap">
+          <div class="hachimitsu-bar-fill" id="r-hachimitsu-bar" style="width:0%"></div>
+        </div>
+        <div class="hachimitsu-msg" id="r-hachimitsu-msg"></div>
+      </div>
     </div>
 
     <div class="result-card animate-in" style="animation-delay:0.2s">
@@ -569,7 +619,7 @@
   <!-- ===== Xシェア案内モーダル ===== -->
   <div class="modal-overlay" id="tweet-modal">
     <div class="modal-box">
-      <div class="modal-icon">🍯</div>
+      <div class="modal-icon"></div>
       <div class="modal-title">Xでシェアする前に</div>
       <div class="modal-text">
         診断結果画像をダウンロードして、<br>
@@ -895,7 +945,7 @@ const types = {
     weaknesses: ["頑固", "感情への配慮不足", "変化を嫌う", "批判的になりやすい"],
     compat: [{ t: "ISTP", desc: "実務的に補完し合える" }, { t: "ISFP", desc: "バランスよく支え合える" }]
   },
-  ESFJ: { name: "領事館", nick: "The Consul",
+  ESFJ: { name: "領事官", nick: "The Consul",
     desc: "社交的で思いやりがあり、人々の世話をすることを喜びとする天性の世話役。コミュニティの絆を大切にし、調和を保つことに力を発揮します。",
     strengths: ["高い共感力", "社交スキル", "協調性", "頼りになる安定感"],
     weaknesses: ["批判に敏感", "変化が苦手", "自分より他者を優先しすぎ", "承認欲求が強い"],
@@ -931,13 +981,27 @@ const types = {
    特殊タイプデータ（ハチミツ・裏ハチミツ）
    ==================================================== */
 const specialTypes = {
-  "ハチミツ": { name: "ハチミツ", nick: "The Honey", desc: "（ここにハチミツの説明文が入ります）", strengths: ["特性①","特性②","特性③","特性④"], weaknesses: ["弱点①","弱点②","弱点③","弱点④"], compat: [{ t: "???", desc: "（相性の説明）" }] },
-  "裏ハチミツ": { name: "裏ハチミツ", nick: "The Shadow Honey", desc: "（ここに裏ハチミツの説明文が入ります）", strengths: ["特性①","特性②","特性③","特性④"], weaknesses: ["弱点①","弱点②","弱点③","弱点④"], compat: [{ t: "???", desc: "（相性の説明）" }] }
+  "ハチミツ": {
+    name: "ハチミツ",
+    nick: "The Honey",
+    desc: "おめでとうございます！あなたは幻の17タイプ目であるハチミツです。",
+    strengths: ["ハイエナ", "転売", "暴力", "身内には優しい"],
+    weaknesses: ["無職", "ヤニカス", "肥満", "社会不適合"],
+    compat: [{ t: "???", desc: "" }]
+  },
+  "裏ハチミツ": {
+    name: "裏ハチミツ",
+    nick: "The Shadow Honey",
+    desc: "おめでとうございます！あなたは伝説の18タイプ目である裏ハチミツです。",
+    strengths: ["優しい", "真人間", "健康", "誠実"],
+    weaknesses: ["軟弱", "影が薄い", "つまらない", "没個性"],
+    compat: [{ t: "???", desc: "" }]
+  }
 };
 
-// ハチミツ条件: {表示Qインデックス(0-based): 必要な選択idx} ※フェイク問除外済み
-const HONEY_COND     = {"0":3,"2":3,"3":0,"4":0,"5":0,"7":2,"8":3,"9":2,"10":2,"12":0,"13":2,"14":3};
-const URA_HONEY_COND = {"0":2,"2":0,"3":3,"4":3,"5":2,"7":1,"8":0,"9":1,"10":3,"12":1,"13":1,"14":1};
+// ハチミツ条件: {表示Qインデックス(0-based): 必要な選択idx} ※フェイク問含む全15問
+const HONEY_COND     = {"0":3,"1":2,"2":3,"3":0,"4":0,"5":0,"6":1,"7":2,"8":3,"9":2,"10":2,"11":1,"12":0,"13":2,"14":3};
+const URA_HONEY_COND = {"0":2,"1":1,"2":0,"3":3,"4":3,"5":2,"6":0,"7":1,"8":0,"9":1,"10":3,"11":0,"12":1,"13":1,"14":1};
 
 function checkSpecialType(log) {
   // log[i] = 表示Q i で選んだ選択idx
@@ -1061,8 +1125,8 @@ function showResult() {
       imgEl.style.display = 'none';
     }
 
-    // 軸スコアは特殊タイプでは非表示
-    document.getElementById('r-axes').innerHTML = '<p style="color:var(--muted);font-size:13px;">このタイプは特別な診断結果です。</p>';
+    // ハチミツ度表示
+    showHachimitsuDegree();
 
     // 強み・弱み
     const traitsEl = document.getElementById('r-traits');
@@ -1097,37 +1161,8 @@ function showResult() {
   document.getElementById('r-nick').textContent = `— ${data.nick} —`;
   document.getElementById('r-desc').textContent = data.desc;
 
-  // 軸スコア表示
-  const axisLabels = [
-    { l: 'E（外向型）', r: 'I（内向型）', idx: 0 },
-    { l: 'S（感覚型）', r: 'N（直感型）', idx: 1 },
-    { l: 'T（思考型）', r: 'F（感情型）', idx: 2 },
-    { l: 'J（判断型）', r: 'P（知覚型）', idx: 3 },
-  ];
-  const axesEl = document.getElementById('r-axes');
-  axesEl.innerHTML = '';
-  axisLabels.forEach(ax => {
-    const raw = scores[ax.idx];
-    // 各軸3問×最大±5点 → 範囲は -15〜+15
-    const pct = Math.round(((raw + 15) / 30) * 100);
-    const leftPct = Math.min(100, Math.max(0, pct));
-    const div = document.createElement('div');
-    div.className = 'axis-row';
-    const dominantLeft = raw >= 0;
-    // 傾きの強さを%で表示（0〜100%の絶対値を割合に変換）
-    const strengthPct = Math.round((Math.abs(raw) / 15) * 100);
-    div.innerHTML = `
-      <div class="axis-labels">
-        <span class="axis-left" style="${dominantLeft ? '' : 'opacity:0.4'}">${ax.l}</span>
-        <span class="axis-right" style="${!dominantLeft ? 'color:var(--accent);opacity:1' : ''}">${ax.r}</span>
-      </div>
-      <div class="axis-bar">
-        <div class="axis-fill" style="width:0%" data-target="${leftPct}"></div>
-      </div>
-      <div class="axis-pct">${dominantLeft ? ax.l.split('（')[0] : ax.r.split('（')[0]} 傾向 ${strengthPct}%</div>
-    `;
-    axesEl.appendChild(div);
-  });
+  // ハチミツ度表示
+  showHachimitsuDegree();
 
   // 強み・弱み
   const traitsEl = document.getElementById('r-traits');
@@ -1141,20 +1176,48 @@ function showResult() {
 
 
   showScreen('screen-result');
+}
 
-  // アニメーション遅延でバー表示
+function showHachimitsuDegree() {
+  // ハチミツ条件と回答ログを照合して一致数をカウント
+  let matched = 0;
+  const total = Object.keys(HONEY_COND).length; // 15問（フェイク3問含む）
+  Object.entries(HONEY_COND).forEach(([qi, ri]) => {
+    if (answerLog[Number(qi)] === Number(ri)) matched++;
+  });
+  const pct = Math.round((matched / total) * 100);
+
+  // メッセージ
+  let msg = '';
+  if (pct === 100) msg = '完全一致！あなたはハチミツそのものです🍯';
+  else if (pct >= 80) msg = 'ハチミツにかなり近い思考の持ち主です！';
+  else if (pct >= 60) msg = 'ハチミツとそこそこ似ています。';
+  else if (pct >= 40) msg = 'ハチミツとは少し違うタイプのようです。';
+  else if (pct >= 20) msg = 'ハチミツとはかなり違う個性の持ち主です。';
+  else msg = 'あなたはハチミツとは真逆の存在かもしれません…';
+
+  document.getElementById('r-hachimitsu-pct').textContent = pct + '%';
+  document.getElementById('r-hachimitsu-msg').textContent = '';
+
+  // バーアニメーション
   setTimeout(() => {
-    document.querySelectorAll('.axis-fill').forEach(el => {
-      el.style.transition = 'width 1s cubic-bezier(0.4, 0, 0.2, 1)';
-      el.style.width = el.dataset.target + '%';
-    });
+    document.getElementById('r-hachimitsu-bar').style.width = pct + '%';
   }, 300);
 }
 
 function buildTweetUrl() {
   const data = specialTypes[resultType] || types[resultType];
   const siteUrl = 'https://hanene5.github.io/hachimitsu-quiz/';
-  const text = `私の性格タイプは「${resultType}（${data.name}）」でした！\n#ハチミツ性格診断`;
+
+  // ハチミツ度を計算
+  let matched = 0;
+  const total = Object.keys(HONEY_COND).length;
+  Object.entries(HONEY_COND).forEach(([qi, ri]) => {
+    if (answerLog[Number(qi)] === Number(ri)) matched++;
+  });
+  const pct = Math.round((matched / total) * 100);
+
+  const text = `私の性格タイプは「${resultType}（${data.name}）」でした！\n私のハチミツ度は${pct}％でした！\n#ハチミツ性格診断`;
   return `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(siteUrl)}`;
 }
 
@@ -1200,7 +1263,27 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('tweet-modal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
   });
+  document.getElementById('disclaimer-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('active');
+  });
 });
 </script>
+<!-- 免責事項ボタン -->
+<button class="disclaimer-btn" onclick="document.getElementById('disclaimer-modal').classList.add('active')">免責事項</button>
+
+<!-- 免責事項モーダル -->
+<div class="disclaimer-modal" id="disclaimer-modal">
+  <div class="disclaimer-box">
+    <h2>免責事項</h2>
+    <p>本サイトの内容は、ハチミツ以外の実在する人物/団体とは一切関係ございません。</p>
+    <p>本サイトはハチミツ本人に利用許可をいただいております。</p>
+    <p>本サイトで提供している診断結果は、娯楽・自己分析のきっかけとして楽しんでいただくことを目的としたものであり、性格、能力、適性、将来性などを正確に判定するものではありません。</p>
+    <p>診断結果は独自のアルゴリズムおよび質問内容に基づいて算出されており、学術的・心理学的な正確性を保証するものではありません。また、医療、心理診断、就職・転職、進学、恋愛、人間関係その他の重要な意思決定の根拠として利用することを推奨しておりません。</p>
+    <p>本サイトの利用によって生じた損害、不利益、トラブル等について、運営者は一切の責任を負いません。</p>
+    <p>診断結果はあくまで一つの見方であり、人の個性や価値を決定づけるものではありません。結果にとらわれず、気軽にお楽しみください。</p>
+    <button class="disclaimer-close" onclick="document.getElementById('disclaimer-modal').classList.remove('active')">閉じる</button>
+  </div>
+</div>
+
 </body>
 </html>
